@@ -5,8 +5,10 @@ const landingSpacer = document.getElementById("landingSpacer");
 const heroFixed = document.getElementById("heroFixed");
 const heroOrbit = document.getElementById("heroOrbit");
 const heroTitleWrap = document.getElementById("heroTitleWrap");
+const currentPage = window.location.pathname.split("/").pop() || "index.html";
 
 function closeMenu() {
+  if (!menuToggle || !menuPanel) return;
   menuToggle.classList.remove("is-open");
   menuToggle.setAttribute("aria-expanded", "false");
   menuPanel.classList.remove("is-open");
@@ -15,6 +17,7 @@ function closeMenu() {
 }
 
 function openMenu() {
+  if (!menuToggle || !menuPanel) return;
   menuToggle.classList.add("is-open");
   menuToggle.setAttribute("aria-expanded", "true");
   menuPanel.classList.add("is-open");
@@ -22,21 +25,84 @@ function openMenu() {
   document.body.classList.add("menu-open");
 }
 
-menuToggle.addEventListener("click", () => {
-  if (menuPanel.classList.contains("is-open")) closeMenu();
-  else openMenu();
-});
+if (menuToggle && menuPanel) {
+  menuToggle.addEventListener("click", () => {
+    if (menuPanel.classList.contains("is-open")) closeMenu();
+    else openMenu();
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+}
 
 document.querySelectorAll(".menu-panel a, .menu-pagination button").forEach((item) => {
+  const target = item.getAttribute("href") || item.dataset.target;
+  if (target === currentPage) {
+    item.classList.add("is-current");
+    if (item.tagName === "A") item.setAttribute("aria-current", "page");
+  }
+
   item.addEventListener("click", (event) => {
-    const target = item.getAttribute("href") || item.dataset.target;
     closeMenu();
     if (target && target.startsWith("#")) {
       event.preventDefault();
       setTimeout(() => document.querySelector(target)?.scrollIntoView({ behavior: "smooth" }), 180);
+      return;
+    }
+
+    if (item.tagName === "BUTTON" && target) {
+      event.preventDefault();
+      setTimeout(() => {
+        window.location.href = target;
+      }, 180);
     }
   });
 });
+
+const revealObserver = "IntersectionObserver" in window
+  ? new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -42px 0px" },
+    )
+  : null;
+
+document.querySelectorAll(".reveal").forEach((element) => {
+  if (revealObserver) revealObserver.observe(element);
+  else element.classList.add("is-visible");
+});
+
+const contactForm = document.getElementById("contactForm");
+if (contactForm) {
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formData = new FormData(contactForm);
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const interest = String(formData.get("interest") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+    const status = contactForm.querySelector(".form-status");
+
+    if (!name || !email || !interest || !message) {
+      if (status) status.textContent = "Complete every field before launching the message.";
+      return;
+    }
+
+    const subject = encodeURIComponent(`SDC enquiry from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nInterest: ${interest}\n\n${message}`,
+    );
+    if (status) status.textContent = "Opening your mail app with the message prepared.";
+    window.location.href = `mailto:sdc@citchennai.net?subject=${subject}&body=${body}`;
+  });
+}
 
 let cells = [];
 let cellSize = 52;

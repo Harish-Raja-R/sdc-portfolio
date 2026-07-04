@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events - Student Developers Cell</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@600;700;900&family=Space+Mono&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="inner-page">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="brand" href="index.html"><span class="brand-mark">SDC</span><span class="brand-copy"><span>Student Developers Cell</span><small>Coimbatore Institute of Technology</small></span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="menu-panel" id="menuPanel" aria-hidden="true">
+      <div class="menu-bg"></div><div class="menu-topline"><span>DEVELOPMENT</span><b>/</b><span>INNOVATION</span><b>/</b><span>EXECUTION</span></div>
+      <div class="menu-pagination"><button data-target="index.html">HOME</button><button data-target="about.html">ABOUT</button><button data-target="events.html">EVENTS</button><button data-target="modules.html">MODULES</button><button data-target="team.html">TEAM</button><button data-target="contact.html">CONTACT</button></div>
+      <div class="menu-links"><a href="index.html"><span>01</span>HOME</a><a href="about.html"><span>02</span>ABOUT</a><a href="events.html"><span>03</span>EVENTS</a><a href="modules.html"><span>04</span>MODULES</a><a href="team.html"><span>05</span>TEAM</a><a href="contact.html"><span>06</span>CONTACT</a></div>
+      <p class="menu-brief">Hackathons, workshops, talks, showcases, and contribution sprints for student builders.</p>
+    </div>
+    <main class="page-main">
+      <section class="section-shell page-hero">
+        <div class="section-log"><span></span>SYSTEM_EVENTS_LOG</div>
+        <div class="section-heading compact">
+          <div><h1>Community Highlights</h1><p>Hack / Learn / Ship</p></div>
+          <p>SDC impact is measured in prototypes launched, teams formed, and students growing into confident engineers.</p>
+        </div>
+        <div class="highlights-track page-card-grid reveal" aria-label="SDC event highlights">
+          <article class="highlight-card"><div class="card-visual visual-one"></div><p>Hackathon / Jun 2025</p><h3>HackOrbit 2025</h3><span>48-hour build sprint for ambitious prototypes and bold teams.</span><a href="contact.html">Read Entry</a></article>
+          <article class="highlight-card"><div class="card-visual visual-two"></div><p>Workshop / Jun 2025</p><h3>Intro to LLMs</h3><span>Hands-on transformers, prompting, fine-tuning, and model pipelines.</span><a href="contact.html">Read Entry</a></article>
+          <article class="highlight-card"><div class="card-visual visual-three"></div><p>Talk / Jul 2025</p><h3>Alumni in Tech</h3><span>Career paths, product engineering, and field notes from CIT alumni.</span><a href="contact.html">Read Entry</a></article>
+          <article class="highlight-card"><div class="card-visual visual-four"></div><p>Open Source / Jul 2025</p><h3>Open Source Sprint</h3><span>First PR challenge with mentorship, reviews, and public portfolios.</span><a href="contact.html">Read Entry</a></article>
+        </div>
+        <div class="timeline-block reveal">
+          <div class="section-log"><span></span>UPCOMING_QUEUE</div>
+          <article><time>JUN 14</time><h3>HackOrbit 2025</h3><p>Team formation, problem pitching, overnight building, and final demos.</p></article>
+          <article><time>JUN 22</time><h3>Intro to LLMs</h3><p>Practical model workflows for prompts, retrieval, fine-tuning, and evaluation.</p></article>
+          <article><time>JUL 05</time><h3>Alumni in Tech</h3><p>Product engineering stories, interview preparation, and career pathways.</p></article>
+          <article><time>JUL 19</time><h3>Open Source Sprint</h3><p>Repository onboarding, issue selection, pull requests, and maintainer review.</p></article>
+        </div>
+      </section>
+    </main>
+    <footer class="mini-footer"><a href="modules.html">Next: Modules</a><span>SDC CIT</span></footer>
+    <script src="script.js"></script>
+  </body>
+</html>
