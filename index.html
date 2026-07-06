@@ -11,12 +11,23 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@600;700;900&family=Space+Mono&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="home.css" />
   </head>
   <body>
+    <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-fill" id="scrollProgressFill"></div></div>
+    <div class="grain-overlay" aria-hidden="true"></div>
+    <div class="cursor-spotlight" id="cursorSpotlight" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
     <nav class="site-nav" aria-label="Primary navigation">
       <a class="brand" href="index.html" aria-label="Student Developers Cell home">
-        <span class="brand-mark" aria-hidden="true"><img src="assets/logo.png" alt="" /></span>
+        <span class="brand-mark" aria-hidden="true">SDC</span>
         <span class="brand-copy">
           <span>Student Developers Cell</span>
           <small>Coimbatore Institute of Technology</small>
@@ -81,41 +92,147 @@
         </div>
       </section>
 
+      <div class="log-ticker" aria-hidden="true">
+        <div class="ticker-track" id="tickerTrack">
+          <span><i class="ticker-dot"></i>$ commit pushed to <b>sdc-portfolio</b> by a first-year builder</span>
+          <span><i class="ticker-dot"></i>$ status: <b>5 build sprints</b> shipped this semester</span>
+          <span><i class="ticker-dot"></i>$ next event: <b>Hackathon Night</b> — see /events</span>
+          <span><i class="ticker-dot"></i>$ workshop scheduled: <b>React hooks, deep dive</b></span>
+          <span><i class="ticker-dot"></i>$ open source &gt; closed doors</span>
+          <span><i class="ticker-dot"></i>$ new PR opened in <b>sdc-portfolio</b></span>
+          <span><i class="ticker-dot"></i>$ commit pushed to <b>sdc-portfolio</b> by a first-year builder</span>
+          <span><i class="ticker-dot"></i>$ status: <b>5 build sprints</b> shipped this semester</span>
+          <span><i class="ticker-dot"></i>$ next event: <b>Hackathon Night</b> — see /events</span>
+          <span><i class="ticker-dot"></i>$ workshop scheduled: <b>React hooks, deep dive</b></span>
+          <span><i class="ticker-dot"></i>$ open source &gt; closed doors</span>
+          <span><i class="ticker-dot"></i>$ new PR opened in <b>sdc-portfolio</b></span>
+        </div>
+      </div>
+
+      <div class="log-ticker log-ticker--alt" aria-hidden="true">
+        <div class="ticker-track">
+          <span><i class="ticker-dot"></i>REACT</span>
+          <span><i class="ticker-dot"></i>NODE.JS</span>
+          <span><i class="ticker-dot"></i>PYTHON</span>
+          <span><i class="ticker-dot"></i>FIGMA</span>
+          <span><i class="ticker-dot"></i>GIT</span>
+          <span><i class="ticker-dot"></i>DOCKER</span>
+          <span><i class="ticker-dot"></i>MONGODB</span>
+          <span><i class="ticker-dot"></i>TENSORFLOW</span>
+          <span><i class="ticker-dot"></i>REACT</span>
+          <span><i class="ticker-dot"></i>NODE.JS</span>
+          <span><i class="ticker-dot"></i>PYTHON</span>
+          <span><i class="ticker-dot"></i>FIGMA</span>
+          <span><i class="ticker-dot"></i>GIT</span>
+          <span><i class="ticker-dot"></i>DOCKER</span>
+          <span><i class="ticker-dot"></i>MONGODB</span>
+          <span><i class="ticker-dot"></i>TENSORFLOW</span>
+        </div>
+      </div>
+
       <section class="section-shell home-gateway">
         <div class="section-log"><span></span>SYSTEM_HOME_LOG</div>
         <div class="section-heading">
           <div>
-            <h2>Enter The Cell</h2>
+            <h2 data-reveal-heading>Enter The Cell</h2>
             <p>Separate pages for every SDC module</p>
           </div>
-          <p>
+          <p class="reveal">
             The site now works as a multi-page experience. Choose a module below to open
             its dedicated page while keeping the SOSC-inspired system interface.
           </p>
         </div>
-        <div class="metric-strip reveal">
-          <article><strong>5+</strong><span>Active tracks</span></article>
-          <article><strong>24H</strong><span>Build sprint culture</span></article>
+        <div class="metric-strip">
+          <article><strong data-count="5" data-suffix="+">0+</strong><span>Active tracks</span></article>
+          <article><strong data-count="24" data-suffix="H">0H</strong><span>Build sprint culture</span></article>
           <article><strong>AI</strong><span>Applied systems focus</span></article>
           <article><strong>OS</strong><span>Open contribution habit</span></article>
         </div>
-        <div class="gateway-grid reveal">
+        <div class="gateway-grid">
           <a href="about.html"><span>01</span><strong>About</strong><small>Who SDC is and what it builds.</small></a>
           <a href="events.html"><span>02</span><strong>Events</strong><small>Hackathons, workshops, talks, and showcases.</small></a>
           <a href="modules.html"><span>03</span><strong>Modules</strong><small>The technical tracks and communities inside SDC.</small></a>
           <a href="team.html"><span>04</span><strong>Team</strong><small>The builders, mentors, and operating groups.</small></a>
           <a href="contact.html"><span>05</span><strong>Contact</strong><small>Coordinates, links, and ways to join.</small></a>
         </div>
+      </section>
+
+      <section class="section-shell" aria-label="How SDC operates">
+        <div class="section-log"><span></span>SYSTEM_PIPELINE_LOG</div>
+        <div class="section-heading compact">
+          <div>
+            <h2 data-reveal-heading>The Build Pipeline</h2>
+            <p>How an idea moves through SDC</p>
+          </div>
+          <p class="reveal">
+            Every member runs the same loop, whether it's their first PR or their tenth
+            project. Scroll to watch it run.
+          </p>
+        </div>
+
+        <div class="pipeline" id="pipeline">
+          <div class="pipeline-rail">
+            <div class="pipeline-rail-fill" id="pipelineFill"></div>
+          </div>
+          <div class="pipeline-steps">
+            <article class="pipeline-step" data-step>
+              <div class="pipeline-node">01</div>
+              <p>Learn</p>
+              <h3>Pick up the skill on demand</h3>
+              <span>
+                Focused sessions on the tools members actually need next: a framework,
+                a language, a workflow, taught by whoever on the team knows it best.
+              </span>
+              <a href="modules.html">See modules &rarr;</a>
+            </article>
+            <article class="pipeline-step" data-step>
+              <div class="pipeline-node">02</div>
+              <p>Build</p>
+              <h3>Turn it into a real project</h3>
+              <span>
+                Every session becomes a build task: a prototype, a repository, a working
+                demo. Teams ship in sprints instead of sitting on ideas.
+              </span>
+              <a href="events.html">View build sprints &rarr;</a>
+            </article>
+            <article class="pipeline-step" data-step>
+              <div class="pipeline-node">03</div>
+              <p>Review</p>
+              <h3>Get real feedback, fast</h3>
+              <span>
+                Mentors and peers review the work like a real code review, not a grade,
+                so the next version is measurably better than the last.
+              </span>
+              <a href="team.html">Meet the reviewers &rarr;</a>
+            </article>
+            <article class="pipeline-step" data-step>
+              <div class="pipeline-node">04</div>
+              <p>Ship</p>
+              <h3>Show the work publicly</h3>
+              <span>
+                Finished builds go on GitHub, into showcases, and in front of the campus,
+                so the track record is something you can actually point to.
+              </span>
+              <a href="about.html">Read the full story &rarr;</a>
+            </article>
+          </div>
+        </div>
+        <p class="pipeline-more">Want the full technical breakdown?<a href="modules.html">Open Modules &rarr;</a></p>
+      </section>
+
+      <section class="section-shell cta-atmosphere">
+        <canvas id="networkCanvas" aria-hidden="true"></canvas>
         <div class="command-panel reveal">
           <div>
             <span>CORE_SYS // STATUS</span>
-            <h3>From curiosity to shipped work</h3>
+            <h3 data-reveal-heading>From curiosity to shipped work</h3>
           </div>
           <p>
             SDC is designed around a simple loop: learn a skill, build with a team,
-            review the result, and show the work publicly.
+            review the result, and show the work publicly. Wherever you are in that
+            loop, there's a module for you.
           </p>
-          <a href="modules.html">Open Modules</a>
+          <a class="magnetic" href="contact.html">Join The Cell</a>
         </div>
       </section>
     </main>
@@ -154,5 +271,192 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="home.js"></script>
+    <script>
+      // Home-page-only enhancements. Guarded so nothing here can break
+      // other pages that share script.js and styles.css.
+      (function () {
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        // ---- scroll progress bar ----
+        const progressFill = document.getElementById("scrollProgressFill");
+        function updateProgress() {
+          if (!progressFill) return;
+          const doc = document.documentElement;
+          const max = doc.scrollHeight - doc.clientHeight;
+          const percent = max > 0 ? (window.scrollY / max) * 100 : 0;
+          progressFill.style.width = percent + "%";
+        }
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        window.addEventListener("resize", updateProgress);
+        updateProgress();
+
+        // ---- cursor spotlight (desktop only, respects reduced motion) ----
+        const spotlight = document.getElementById("cursorSpotlight");
+        if (spotlight && !prefersReducedMotion && window.matchMedia("(hover: hover)").matches) {
+          window.addEventListener(
+            "mousemove",
+            (event) => {
+              spotlight.style.setProperty("--spot-x", event.clientX + "px");
+              spotlight.style.setProperty("--spot-y", event.clientY + "px");
+            },
+            { passive: true },
+          );
+        } else if (spotlight) {
+          spotlight.style.display = "none";
+        }
+
+        // ---- magnetic buttons ----
+        if (!prefersReducedMotion && window.matchMedia("(hover: hover)").matches) {
+          document.querySelectorAll(".magnetic").forEach((el) => {
+            el.addEventListener("mousemove", (event) => {
+              const rect = el.getBoundingClientRect();
+              const x = event.clientX - rect.left - rect.width / 2;
+              const y = event.clientY - rect.top - rect.height / 2;
+              el.style.transform = `translate(${x * 0.28}px, ${y * 0.5}px)`;
+            });
+            el.addEventListener("mouseleave", () => {
+              el.style.transform = "translate(0, 0)";
+            });
+          });
+        }
+
+        // ---- animated metric counters ----
+        const counters = document.querySelectorAll(".metric-strip strong[data-count]");
+        if (counters.length) {
+          const countObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const target = Number(el.dataset.count);
+                const suffix = el.dataset.suffix || "";
+                countObserver.unobserve(el);
+
+                if (prefersReducedMotion) {
+                  el.textContent = target + suffix;
+                  return;
+                }
+
+                const duration = 900;
+                const start = performance.now();
+                function tick(now) {
+                  const progress = Math.min(1, (now - start) / duration);
+                  const eased = 1 - Math.pow(1 - progress, 3);
+                  el.textContent = Math.round(eased * target) + suffix;
+                  if (progress < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+              });
+            },
+            { threshold: 0.6 },
+          );
+          counters.forEach((el) => countObserver.observe(el));
+        }
+
+        // ---- scroll-driven build pipeline ----
+        const pipeline = document.getElementById("pipeline");
+        const pipelineFill = document.getElementById("pipelineFill");
+        const steps = document.querySelectorAll("[data-step]");
+
+        function updatePipeline() {
+          if (!pipeline || !pipelineFill || !steps.length) return;
+          const rect = pipeline.getBoundingClientRect();
+          const viewportAnchor = window.innerHeight * 0.72;
+          const total = rect.height;
+          const traveled = Math.max(0, Math.min(total, viewportAnchor - rect.top));
+          const percent = total > 0 ? (traveled / total) * 100 : 0;
+          pipelineFill.style.height = percent + "%";
+
+          steps.forEach((step) => {
+            const stepRect = step.getBoundingClientRect();
+            const node = step.querySelector(".pipeline-node");
+            const nodeCenter = stepRect.top + (node ? node.offsetHeight / 2 : 0);
+            if (nodeCenter <= viewportAnchor) {
+              step.classList.add("is-active");
+            } else {
+              step.classList.remove("is-active");
+            }
+          });
+        }
+
+        if (pipeline) {
+          window.addEventListener("scroll", updatePipeline, { passive: true });
+          window.addEventListener("resize", updatePipeline);
+          updatePipeline();
+        }
+
+        // ---- ambient community network canvas ----
+        const canvas = document.getElementById("networkCanvas");
+        if (canvas && canvas.getContext) {
+          const ctx = canvas.getContext("2d");
+          let width = 0;
+          let height = 0;
+          let nodes = [];
+          const colors = ["rgba(201,255,77,0.9)", "rgba(255,84,112,0.9)", "rgba(109,240,255,0.9)"];
+
+          function resizeCanvas() {
+            const parent = canvas.parentElement;
+            width = canvas.width = parent.clientWidth;
+            height = canvas.height = parent.clientHeight;
+            const count = Math.max(18, Math.round((width * height) / 24000));
+            nodes = Array.from({ length: count }, () => ({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              vx: (Math.random() - 0.5) * 0.25,
+              vy: (Math.random() - 0.5) * 0.25,
+              color: colors[Math.floor(Math.random() * colors.length)],
+            }));
+          }
+
+          function drawFrame() {
+            ctx.clearRect(0, 0, width, height);
+            nodes.forEach((node) => {
+              node.x += node.vx;
+              node.y += node.vy;
+              if (node.x < 0 || node.x > width) node.vx *= -1;
+              if (node.y < 0 || node.y > height) node.vy *= -1;
+            });
+
+            for (let i = 0; i < nodes.length; i += 1) {
+              for (let j = i + 1; j < nodes.length; j += 1) {
+                const a = nodes[i];
+                const b = nodes[j];
+                const dx = a.x - b.x;
+                const dy = a.y - b.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 140) {
+                  ctx.strokeStyle = `rgba(148, 163, 184, ${0.14 * (1 - dist / 140)})`;
+                  ctx.lineWidth = 1;
+                  ctx.beginPath();
+                  ctx.moveTo(a.x, a.y);
+                  ctx.lineTo(b.x, b.y);
+                  ctx.stroke();
+                }
+              }
+            }
+
+            nodes.forEach((node) => {
+              ctx.beginPath();
+              ctx.fillStyle = node.color;
+              ctx.arc(node.x, node.y, 1.8, 0, Math.PI * 2);
+              ctx.fill();
+            });
+          }
+
+          resizeCanvas();
+          window.addEventListener("resize", resizeCanvas);
+
+          if (prefersReducedMotion) {
+            drawFrame();
+          } else {
+            (function loop() {
+              drawFrame();
+              requestAnimationFrame(loop);
+            })();
+          }
+        }
+      })();
+    </script>
   </body>
 </html>

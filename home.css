@@ -1,0 +1,413 @@
+/* ===================================================================
+   HOME.CSS — loaded only by index.html.
+   Total re-skin of the shared design system for the home page only.
+   Every other page keeps loading styles.css untouched, so nothing
+   here can break about/events/modules/team/contact.
+=================================================================== */
+
+:root {
+  /* The club's real palette — same values styles.css already ships,
+     redeclared here only so retyping/nav/footer overrides below have
+     something to reference. Nothing here diverges from the brand. */
+  --black: #000000;
+  --ink: #08080d;
+  --panel: #0f1018;
+  --panel-soft: #151624;
+  --purple: #8b5cf6;
+  --blue: #3b82f6;
+  --pink: #ec4899;
+  --white: #e5e7eb;
+  --secondary: #d1d5db;
+  --muted: #6b7280;
+  --line: rgba(229, 231, 235, 0.15);
+  --glow: rgba(139, 92, 246, 0.34);
+  --signal: #34e2a6;
+  --signal-dim: rgba(52, 226, 166, 0.22);
+}
+
+body {
+  font-family: "Manrope", system-ui, sans-serif;
+  cursor: default;
+}
+
+/* ---- retype every element that previously used Orbitron ---- */
+.brand-mark,
+.brand-copy span,
+.menu-links a,
+.loc-chip strong,
+.hero-emblem,
+.hero-title-wrap h1,
+.section-heading h1,
+.section-heading h2,
+.about-grid h3,
+.module-grid h3,
+.highlight-card h3,
+.footer-watermark,
+.footer-brand a,
+.site-footer h3,
+.metric-strip strong,
+.gateway-grid strong,
+.contact-grid strong,
+.command-panel h3,
+.split-panel h2,
+.contact-console h2,
+.timeline-block h3,
+.module-detail-grid h3,
+.team-ops-grid h3,
+.pipeline-node,
+.pipeline-step h3 {
+  font-family: "Bricolage Grotesque", "Inter", sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.hero-title-wrap h1 {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+/* ---- scroll progress bar ---- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  pointer-events: none;
+}
+
+.scroll-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--purple), var(--pink));
+  box-shadow: 0 0 12px var(--glow);
+}
+
+/* ---- grain overlay for a filmic, premium finish ---- */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  opacity: 0.05;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* ---- cursor spotlight ---- */
+.cursor-spotlight {
+  position: fixed;
+  z-index: 5;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    420px circle at var(--spot-x, 50%) var(--spot-y, 30%),
+    rgba(139, 92, 246, 0.08),
+    transparent 70%
+  );
+  transition: opacity 300ms ease;
+}
+
+/* ---- nav retype + accent ---- */
+.brand-mark {
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
+.status-chip i {
+  border-color: var(--purple);
+  background: var(--purple);
+  box-shadow: 0 0 16px var(--purple);
+}
+
+.menu-pagination button.is-current,
+.menu-links a.is-current {
+  color: var(--purple);
+}
+
+/* ---- hero retint ---- */
+.hero-emblem {
+  text-shadow: 0 0 40px rgba(139, 92, 246, 0.45);
+}
+
+.hero-emblem b {
+  color: var(--pink);
+}
+
+.hero-orbit::after {
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 80px var(--glow);
+}
+
+.hero-kicker {
+  color: var(--pink);
+}
+
+/* ---- log ticker: bolder diagonal band ---- */
+.log-ticker {
+  transform: skewY(-1.2deg);
+  margin: -18px 0;
+  padding: 22px 0;
+  background: var(--purple);
+  border: none;
+}
+
+.ticker-track {
+  animation-duration: 26s;
+}
+
+.ticker-track span {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.ticker-track span b {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.ticker-dot {
+  background: var(--ink);
+  box-shadow: none;
+}
+
+/* ---- magnetic buttons ---- */
+.magnetic {
+  display: inline-flex;
+  transition: transform 120ms ease;
+  will-change: transform;
+}
+
+/* ---- gateway cards: sharper, high-contrast hover ---- */
+.gateway-grid a {
+  background:
+    linear-gradient(145deg, rgba(139, 92, 246, 0.14), rgba(59, 130, 246, 0.04)),
+    rgba(15, 16, 18, 0.72);
+}
+
+.gateway-grid a:hover {
+  border-color: var(--purple);
+  box-shadow: 0 0 42px rgba(139, 92, 246, 0.22);
+}
+
+/* ---- command panel / CTA retint ---- */
+.command-panel a {
+  border-color: var(--purple);
+  background: var(--purple);
+  color: var(--white);
+  font-weight: 800;
+}
+
+.cta-atmosphere .command-panel {
+  background:
+    linear-gradient(90deg, rgba(139, 92, 246, 0.18), rgba(59, 130, 246, 0.05)),
+    rgba(5, 5, 6, 0.86);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .log-ticker {
+    transform: none;
+  }
+}
+
+/* ===================================================================
+   HOME.JS PAIRED STYLES — everything below is written so the page
+   is 100% correct even if home.js never loads: nothing here hides
+   content by default from plain CSS, only from classes JS adds.
+=================================================================== */
+
+/* ---- ambient section glow (pure CSS, no markup/JS needed) ---- */
+.section-shell {
+  position: relative;
+}
+
+.section-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 60%;
+  background:
+    radial-gradient(closest-side, rgba(139, 92, 246, 0.09), transparent 72%) 12% 0%,
+    radial-gradient(closest-side, rgba(59, 130, 246, 0.07), transparent 72%) 88% 8%;
+  background-repeat: no-repeat;
+  background-size: 60% 100%, 55% 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section-shell > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-atmosphere::before {
+  background:
+    radial-gradient(closest-side, rgba(236, 72, 153, 0.1), transparent 72%) 20% 20%,
+    radial-gradient(closest-side, rgba(139, 92, 246, 0.08), transparent 72%) 82% 0%;
+  background-repeat: no-repeat;
+  background-size: 55% 100%, 55% 100%;
+}
+
+/* ---- second, reversed-direction marquee for depth ---- */
+.log-ticker--alt {
+  background: transparent;
+  border-top: none;
+  padding: 10px 0 20px;
+}
+
+.log-ticker--alt .ticker-track {
+  animation-duration: 42s;
+  animation-direction: reverse;
+}
+
+.log-ticker--alt .ticker-track span {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.log-ticker--alt .ticker-dot {
+  background: var(--pink);
+  box-shadow: 0 0 6px var(--pink);
+}
+
+/* ---- word-mask heading reveal (JS wraps words; CSS just animates) ---- */
+.split-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.split-word-inner {
+  display: inline-block;
+  transform: translateY(112%);
+  opacity: 0;
+  transition: transform 640ms cubic-bezier(0.22, 1, 0.36, 1), opacity 480ms ease;
+}
+
+[data-reveal-heading].is-revealed .split-word-inner {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ---- staggered card reveal (JS adds .stagger-item + .is-visible) ---- */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(30px);
+  clip-path: inset(0 0 22% 0);
+  transition:
+    opacity 640ms ease,
+    transform 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    clip-path 640ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stagger-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  clip-path: inset(0 0 0% 0);
+}
+
+/* ---- gateway cards: cursor-follow spotlight + 3D tilt ---- */
+.gateway-grid a {
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.gateway-grid a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), rgba(139, 92, 246, 0.24), transparent 70%);
+  opacity: 0;
+  transition: opacity 280ms ease;
+  pointer-events: none;
+}
+
+.gateway-grid a:hover::after {
+  opacity: 1;
+}
+
+/* ---- hero grid: mouse parallax layer (JS sets transform only) ---- */
+#heroGrid {
+  will-change: transform;
+  transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---- rotating accent ring on the active pipeline node ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .pipeline-step.is-active .pipeline-node::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    border-top-color: var(--purple);
+    border-right-color: var(--pink);
+    animation: node-spin 2.4s linear infinite;
+  }
+}
+
+@keyframes node-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---- custom cursor: dot + trailing ring (desktop only) ---- */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 200ms ease;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--purple);
+  box-shadow: 0 0 10px var(--purple);
+  opacity: 0;
+}
+
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(229, 231, 235, 0.45);
+  opacity: 0;
+  transition: opacity 200ms ease, width 240ms cubic-bezier(0.22, 1, 0.36, 1), height 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 240ms ease, background 240ms ease;
+}
+
+.has-custom-cursor .cursor-dot,
+.has-custom-cursor .cursor-ring {
+  opacity: 1;
+}
+
+.has-custom-cursor,
+.has-custom-cursor a,
+.has-custom-cursor button {
+  cursor: none;
+}
+
+.cursor-hover .cursor-ring {
+  width: 56px;
+  height: 56px;
+  border-color: var(--purple);
+  background: rgba(139, 92, 246, 0.08);
+}
+
+@media (max-width: 900px) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}
