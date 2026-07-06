@@ -195,3 +195,4 @@ function updateHero() {
 window.addEventListener("resize", buildGrid);
 window.addEventListener("scroll", updateHero, { passive: true });
 buildGrid();
+
