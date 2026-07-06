@@ -890,8 +890,11 @@ address {
   text-transform: uppercase;
 }
 
+/* CONTACT CARD UPGRADE INTEGRATED HERE */
+
 .gateway-grid a,
-.contact-grid a {
+.contact-grid a,
+.contact-info-card {
   min-height: 220px;
   display: flex;
   flex-direction: column;
@@ -905,14 +908,16 @@ address {
 }
 
 .gateway-grid a:hover,
-.contact-grid a:hover {
+.contact-grid a:hover,
+.contact-info-card:hover {
   transform: translateY(-4px);
   border-color: rgba(139, 92, 246, 0.72);
   box-shadow: 0 0 38px rgba(139, 92, 246, 0.2);
 }
 
 .gateway-grid span,
-.contact-grid span {
+.contact-grid span,
+.contact-info-card span {
   color: var(--pink);
   font-family: "Space Mono", monospace;
   font-size: 0.72rem;
@@ -920,7 +925,8 @@ address {
 }
 
 .gateway-grid strong,
-.contact-grid strong {
+.contact-grid strong,
+.contact-info-card strong {
   color: var(--white);
   font-family: Orbitron, monospace;
   font-size: 1.3rem;
@@ -928,7 +934,8 @@ address {
 }
 
 .gateway-grid small,
-.contact-grid small {
+.contact-grid small,
+.contact-info-card small {
   color: var(--secondary);
   line-height: 1.6;
 }
