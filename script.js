@@ -195,3 +195,661 @@ function updateHero() {
 window.addEventListener("resize", buildGrid);
 window.addEventListener("scroll", updateHero, { passive: true });
 buildGrid();
+
+
+/* ---------------------------------------------
+   Team directory + member profile view (team.html)
+   QR codes on ID cards point to: team.html?m=<slug>
+--------------------------------------------- */
+
+const SDC_TEAM = [
+  {
+    "id": "SDC-25-26-001",
+    "slug": "theebikasri-jagadees",
+    "name": "Theebikasri Jagadees",
+    "role": "Executive Director",
+    "program": "MSc AI&ML, 3rd Yr",
+    "division": "Executive Directors",
+    "avatar": "https://lh3.googleusercontent.com/d/11ptnl9KQ8kYWt69IprD6NfToQKdeZ_GH=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/theebikasri-jagadees-b6b597321?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/theebikasri.j?utm_source=qr&igsh=djNrcHFtdWJ3MXR1"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-002",
+    "slug": "shane-israel",
+    "name": "Shane Israel",
+    "role": "Executive Director",
+    "program": "MSc AI&ML, 3rd Yr",
+    "division": "Executive Directors",
+    "avatar": "https://lh3.googleusercontent.com/d/1Zxk0cJxMs5nx4L-NeNB0uwBBj7QYjOPJ=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/shane-israel/"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/_shane__israel_lh44_/"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-003",
+    "slug": "madhumitha-n",
+    "name": "Madhumitha N",
+    "role": "Chief Architect",
+    "program": "MSc AI&ML, 4th Yr",
+    "division": "Chief Architects",
+    "avatar": "https://sdccit.vercel.app/assets/img/members25-26/MADHUMITHA.jpg",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/madhumitha-n-2526362a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/_.madhu._n?igsh=bDZ4NTJmamllOGtu"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-004",
+    "slug": "nikhil-s-s",
+    "name": "Nikhil S S",
+    "role": "Chief Architect",
+    "program": "BE ECE, 4th Yr",
+    "division": "Chief Architects",
+    "avatar": "https://sdccit.vercel.app/assets/img/members25-26/Nikhil.jpg",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/nikhil-s-s-2005official?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/nikhil._.s.s?igsh=YnJma256NHg3MGxn"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-005",
+    "slug": "jeydarsana-j",
+    "name": "Jeydarsana J",
+    "role": "Associate Director",
+    "program": "MSc DCS, 3rd Yr",
+    "division": "Associate Directors",
+    "avatar": "https://lh3.googleusercontent.com/d/1vjGPIeSZOl4Q-APdAbkQxSS5vo5obCCt=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/jeydarsana-j-994505329?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/__jd___06?igsh=M3lyOTZ2aG1tczBv"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-006",
+    "slug": "kalaiselvan-k",
+    "name": "Kalaiselvan K",
+    "role": "Associate Director",
+    "program": "MSc AI&ML, 3rd Yr",
+    "division": "Associate Directors",
+    "avatar": "https://lh3.googleusercontent.com/d/1WjcNKoYHHGtD-7sY2mNrpzCAdSEiq-Hh=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/kalaiselvan-k-3871912a7"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/k_kalaiselvan_?igsh=MTI5Y3NtYjlpeWp3OA=="
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-007",
+    "slug": "nesika-saravanan",
+    "name": "Nesika Saravanan",
+    "role": "Treasurer",
+    "program": "MSc SS, 3rd Yr",
+    "division": "Treasurers",
+    "avatar": "https://lh3.googleusercontent.com/d/133GGALqIbZOwcjSMJbjkg9IfQ90Ovdaz=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/nesika-saravanan-261981339?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/__.nesika.__"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-008",
+    "slug": "nithish-venkat",
+    "name": "Nithish Venkat",
+    "role": "Treasurer",
+    "program": "MSc AI&ML, 3rd Yr",
+    "division": "Treasurers",
+    "avatar": "https://lh3.googleusercontent.com/d/1kGRbGLHTDO1W3hxIXILfNOxIrqcgnArf=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/nithish-venkat-4756442b4?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/freak.nx4?igsh=N2oyenlteTRqeDJ5"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-009",
+    "slug": "lakshana-ramesh",
+    "name": "Lakshana Ramesh",
+    "role": "External Affairs",
+    "program": "MSc AI&ML, 3rd Yr",
+    "division": "External Affairs Lead",
+    "avatar": "https://lh3.googleusercontent.com/d/1nYLQjlJe4Tev3ciy22j-lvFMfFtCmOKy=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/lakshana-ramesh-04b84b320"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/_lakshana_ramesh06?igsh=ZHIxNnp4ejJpM2Jo&utm_source=qr"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-010",
+    "slug": "ananthika-c",
+    "name": "Ananthika C.",
+    "role": "Technical Management Lead",
+    "program": "MSc AI&ML, 3rd Yr",
+    "division": "Heads of Technical Management",
+    "avatar": "https://lh3.googleusercontent.com/d/10W1kn1dg0gd0nG1Kt34gooKj73gPZ_vh=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/ananthika-c-7996a3320?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/antarcticx._?igsh=OTR4ODFteW91eDd0&utm_source=qr"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-011",
+    "slug": "harish-raja-r",
+    "name": "Harish Raja R",
+    "role": "Technical Management Lead",
+    "program": "MSc AI&ML, 3rd Yr",
+    "division": "Heads of Technical Management",
+    "avatar": "https://lh3.googleusercontent.com/d/1ym0614ueasHHI-2fLJVYgEbVZ-GTTJ0A=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/harish-raja-r"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/harish.weirdo"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-012",
+    "slug": "vijayaganth-kathiresan",
+    "name": "Vijayaganth Kathiresan",
+    "role": "Technical Consultant",
+    "program": "MSc AI&ML, 2nd Yr",
+    "division": "Technical Consultants",
+    "avatar": "https://lh3.googleusercontent.com/d/1PEvoFauuIN8v5thTEoVx6WFyhBrfq7z7=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/vijayaganth-k-verified-b20406375?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/sdc_cit/"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-013",
+    "slug": "shri-sundaram",
+    "name": "Shri Sundaram",
+    "role": "Technical Consultant",
+    "program": "BE ECE, 2nd Yr",
+    "division": "Technical Consultants",
+    "avatar": "https://lh3.googleusercontent.com/d/1zQ34kIGpXhiesWgD989lNm35Q4VVHnAZ=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://linkedin.com/in/shri-sundaram-2b2bb5383"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/sdc_cit/"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-014",
+    "slug": "hayakreev-raja",
+    "name": "Hayakreev Raja",
+    "role": "Technical Consultant",
+    "program": "MSc AI&ML, 2nd Yr",
+    "division": "Technical Consultants",
+    "avatar": "https://lh3.googleusercontent.com/d/16XWeK4HalQzaU8A6aExqSRB-sg8yN41i=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/hayakreev-raja-a54508395?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/hayak_015?utm_source=qr&igsh=Znc2eWo2eXhhdm1r"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-015",
+    "slug": "adhidev-s",
+    "name": "Adhidev S",
+    "role": "Technical Consultant",
+    "program": "MSc SS, 2nd Yr",
+    "division": "Technical Consultants",
+    "avatar": "https://lh3.googleusercontent.com/d/1jZu6GHYhguXZRFwET-uI9ld02Ujc9pfE=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/company/sdc-cit/"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/adhidev_02"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-016",
+    "slug": "bhuvanesh-a",
+    "name": "Bhuvanesh A",
+    "role": "Technical Consultant",
+    "program": "MSc AI&ML, 2nd Yr",
+    "division": "Technical Consultants",
+    "avatar": "https://lh3.googleusercontent.com/d/11aJ_Z7gMlL-7bvqR8NnS_X98-YxKiLSH=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/bhuvanesh-a-16321b320?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/_.bhuvanesh._10_?igsh=dmkwbXhmMDJrNW1k"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-017",
+    "slug": "dharshini-s",
+    "name": "Dharshini S",
+    "role": "Technical Consultant",
+    "program": "MSc AI&ML, 2nd Yr",
+    "division": "Technical Consultants",
+    "avatar": "https://lh3.googleusercontent.com/d/1GIZzw-tqlZETR2hxdCWJ9fF8_xt-QuAV=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/dharshini-s-526a52375?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/_d.h.a.r.s.h.in.i_?igsh=MXAwM3FyeGJ0b2VmMA=="
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-018",
+    "slug": "adhiya-rangaraj",
+    "name": "Adhiya Rangaraj",
+    "role": "Head of Public Relations",
+    "program": "MSc AI&ML, 3rd Yr",
+    "division": "Head of Public Relations",
+    "avatar": "https://lh3.googleusercontent.com/d/1zkbqcBzfJXBC3H1IbQuwLoaUuozA2qDW=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/adhiya-rangaraj-a3429a302/"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/sdc_cit/"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-019",
+    "slug": "saadhia-h",
+    "name": "Saadhia H",
+    "role": "Public Relations Team",
+    "program": "BE CSE, 2nd Yr",
+    "division": "The Public Relations Team",
+    "avatar": "https://lh3.googleusercontent.com/d/1Cnqfrxe5NkxwfKmQbZyJqRklaJbfqfhY=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/saadhia-h-1b5990384?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/sdc_cit/"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-020",
+    "slug": "ashwanth-s",
+    "name": "Ashwanth S",
+    "role": "Public Relations Team",
+    "program": "BE CSE, 2nd Yr",
+    "division": "The Public Relations Team",
+    "avatar": "https://lh3.googleusercontent.com/d/1IYpiMI33XI350n6fOJk-Np5TADHo2sr3=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/ashwanth-s-3ab75737a?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/ashwanth7704?igsh=bWtoeGtibHdiZWVj"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-021",
+    "slug": "ashwina-jayakrishnan",
+    "name": "Ashwina Jayakrishnan",
+    "role": "Public Relations Team",
+    "program": "MSc AI&ML, 2nd Yr",
+    "division": "The Public Relations Team",
+    "avatar": "https://lh3.googleusercontent.com/d/1fJH3mzkRuXOPYmI5Fb1Gch3qM-mo0u6r=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/ashwina-jayakrishnan-00b783355?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/ashhwee_.__?igsh=MTgxcmJlMnV1d2t0bg%3D%3D&utm_source=qr"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-022",
+    "slug": "samiksha-muthukumar",
+    "name": "Samiksha Muthukumar",
+    "role": "Head of Design",
+    "program": "MSc AI&ML, 3rd Yr",
+    "division": "Head of Design",
+    "avatar": "https://lh3.googleusercontent.com/d/1qIuNry87uZpu3e_Gmvc9n4xuXaxLgLYG=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/samiksha-muthukumar-499b60320/"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/unique__grl__25/"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-023",
+    "slug": "rochana-r",
+    "name": "Rochana R",
+    "role": "Designer",
+    "program": "MSc AI&ML, 2nd Yr",
+    "division": "Designers",
+    "avatar": "https://lh3.googleusercontent.com/d/10_br9f425vV6QRvaBTn3OXJvHT0yWRnw=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/rochana-r-419a8b388?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/_.sugarrrr?igsh=djBybTZpbXp0ZjU5"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-024",
+    "slug": "charan-sekar",
+    "name": "Charan Sekar",
+    "role": "Designer",
+    "program": "MSc DS, 2nd Yr",
+    "division": "Designers",
+    "avatar": "https://lh3.googleusercontent.com/d/1cs0rVSCNSXHSGefBsCWjQDMakJTpVg45=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/charan-sekar-4670a0381"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/l_cy_offl?igsh=bGlneGo2cWV6dW5i"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-025",
+    "slug": "rithika-m",
+    "name": "Rithika M",
+    "role": "Designer",
+    "program": "MSc AI&ML, 2nd Yr",
+    "division": "Designers",
+    "avatar": "https://lh3.googleusercontent.com/d/1qwdAmjPaQaN_NT9BUT7XQlw4-51pzcuv=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/rithika-m-a797783bb"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/rithikamohan_?igsh=MWt1ZDN2eWZ4ZHV0Nw=="
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-026",
+    "slug": "lathikka-ma",
+    "name": "Lathikka MA",
+    "role": "Program Management Lead",
+    "program": "MSc DS, 3rd Yr",
+    "division": "Head of Program Management",
+    "avatar": "https://lh3.googleusercontent.com/d/1c0aNqgU7yh3rXeaRGMxNtsqilW2rqKY7=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/lathikka-ma-cit"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/lathikkkaa?igsh=OG1pcm50NjE5OW5t"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-027",
+    "slug": "janani-sree",
+    "name": "Janani Sree",
+    "role": "Program Manager",
+    "program": "MSc AI&ML, 2nd Yr",
+    "division": "The Program Managers",
+    "avatar": "https://lh3.googleusercontent.com/d/1fU5aTdG5YEvr58z7z4ZrXVTo2wpFEy6v=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/janani-sree-6a6491372?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/jananisreep?igsh=ZTBzMnQ1anFueXp3"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-028",
+    "slug": "aakash-balasubramani",
+    "name": "Aakash Balasubramani",
+    "role": "Program Manager",
+    "program": "MSc AI&ML, 3rd Yr",
+    "division": "The Program Managers",
+    "avatar": "https://lh3.googleusercontent.com/d/1jCzDOgGM2SKch3ypjJT4Oo3NH-Xqvfqu=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/aakash-balasubramani-994b47320?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/_.aakash.b._?igsh=bm5sN2N2cTJzdHh4"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-029",
+    "slug": "keerthana-venkatachalam",
+    "name": "Keerthana Venkatachalam",
+    "role": "Program Manager",
+    "program": "MSc AI&ML, 3rd Yr",
+    "division": "The Program Managers",
+    "avatar": "https://lh3.googleusercontent.com/d/1YFtp8tx--dBy2QGpO78Hhf-ZQYPbUn-3=w1000",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/keerthana-venkatachalam-340394320?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/_.keerthh.__?igsh=ejI4aWQyMWk3M2xx"
+      }
+    ]
+  }
+];
+
+(function () {
+  const teamListView = document.getElementById("teamListView");
+  const profileView = document.getElementById("profileView");
+  if (!teamListView || !profileView) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get("m");
+  if (!slug) return;
+
+  const member = SDC_TEAM.find((person) => person.slug === slug);
+  const card = document.getElementById("profileCard");
+  const notFound = document.getElementById("profileNotFound");
+  const breadcrumbDivision = document.getElementById("profileDivision");
+  const navWrap = document.getElementById("profileNav");
+  const footer = document.getElementById("teamFooter");
+
+  teamListView.hidden = true;
+  profileView.hidden = false;
+
+  if (!member) {
+    notFound.hidden = false;
+    breadcrumbDivision.textContent = "Not Found";
+    document.title = "Profile Not Found - Student Developers Cell";
+    return;
+  }
+
+  document.title = `${member.name} - Student Developers Cell`;
+  breadcrumbDivision.textContent = member.division;
+
+  document.getElementById("profileAvatar").src = member.avatar || "";
+  document.getElementById("profileAvatar").alt = member.name;
+  document.getElementById("profileId").textContent = member.id;
+  document.getElementById("profileName").textContent = member.name;
+  document.getElementById("profileDivisionLine").textContent = member.division;
+  document.getElementById("profileRole").textContent = member.role;
+  document.getElementById("profileProgram").textContent = member.program;
+
+  const idCardMock = document.getElementById("idCardMock");
+  document.getElementById("idCardPhoto").src = member.avatar || "";
+  document.getElementById("idCardPhoto").alt = member.name;
+  document.getElementById("idCardName").textContent = member.name;
+  document.getElementById("idCardRole").textContent = member.role;
+  document.getElementById("idCardId").textContent = member.id;
+  if (idCardMock) idCardMock.hidden = false;
+
+  const socialsWrap = document.getElementById("profileSocials");
+  (member.socials || []).forEach((social) => {
+    const a = document.createElement("a");
+    a.href = social.href;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.className = "secondary";
+    a.textContent = social.label;
+    socialsWrap.appendChild(a);
+  });
+
+  card.hidden = false;
+
+  if (footer) {
+    footer.innerHTML = '<a href="team.html">Back to Team</a><span>SDC CIT</span>';
+  }
+
+  const copyBtn = document.getElementById("copyLinkBtn");
+  copyBtn.addEventListener("click", () => {
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        copyBtn.textContent = "Link Copied";
+        setTimeout(() => {
+          copyBtn.textContent = "Copy Profile Link";
+        }, 1800);
+      })
+      .catch(() => {
+        copyBtn.textContent = "Copy Failed";
+        setTimeout(() => {
+          copyBtn.textContent = "Copy Profile Link";
+        }, 1800);
+      });
+  });
+
+  const index = SDC_TEAM.findIndex((person) => person.slug === slug);
+  const prev = SDC_TEAM[(index - 1 + SDC_TEAM.length) % SDC_TEAM.length];
+  const next = SDC_TEAM[(index + 1) % SDC_TEAM.length];
+
+  if (SDC_TEAM.length > 1) {
+    navWrap.innerHTML = `
+      <a href="team.html?m=${prev.slug}">
+        <small>&larr; Previous Member</small>
+        <strong>${prev.name}</strong>
+      </a>
+      <a href="team.html?m=${next.slug}">
+        <small>Next Member &rarr;</small>
+        <strong>${next.name}</strong>
+      </a>
+    `;
+  }
+})();
