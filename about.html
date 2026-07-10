@@ -79,7 +79,10 @@
       @media (max-width: 900px) {
         .photo-duo { grid-template-columns: 1fr; }
         .tilt-left, .tilt-right { transform: rotate(0deg); }
+        .photo-card::after { opacity: 0.55; animation: photo-pulse 3.2s ease-in-out infinite; }
+        .photo-card img { filter: grayscale(0%) contrast(1.06); }
       }
+      @keyframes photo-pulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.75; } }
       @media (max-width: 900px) {
         .loop-square {
           grid-template-columns: 1fr;
@@ -88,16 +91,17 @@
             "arrow-top"
             "step2"
             "arrow-right"
+            "hub"
             "step3"
             "arrow-bottom"
-            "step4";
+            "step4"
+            "arrow-left";
         }
-        .pos-left,
-        .loop-hub { display: none; }
         .pos-top .loop-chevron,
         .pos-right .loop-chevron,
         .pos-bottom .loop-chevron { transform: rotate(90deg); }
         .loop-return { display: flex; }
+        .loop-step { box-shadow: 0 0 24px rgba(139, 92, 246, 0.14); }
       }
     </style>
   </head>
