@@ -66,23 +66,18 @@
       .loop-square .loop-step:nth-of-type(3) { transition-delay: 240ms; }
       .loop-square .loop-step:nth-of-type(4) { transition-delay: 360ms; }
       .loop-return { display: none; align-items: center; justify-content: center; gap: 10px; margin-top: 22px; padding-top: 18px; border-top: 1px dashed var(--line); color: var(--pink); font-family: "Space Mono", monospace; font-size: 0.76rem; letter-spacing: 0.15em; text-transform: uppercase; }
-      .photo-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
-      .photo-card { position: relative; overflow: hidden; padding: 8px; border: 1px solid var(--line); background: #050508; transition: transform 360ms ease, box-shadow 360ms ease; }
-      .photo-card img { display: block; width: 100%; height: 360px; object-fit: cover; filter: grayscale(20%) contrast(1.05); transition: filter 450ms ease, transform 700ms ease; }
-      .photo-card:hover img { filter: grayscale(0%) contrast(1.08); transform: scale(1.05); }
-      .photo-card::after { content: ""; position: absolute; inset: 0; padding: 1px; border-radius: 0; background: linear-gradient(120deg, var(--purple), var(--blue), var(--pink)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 450ms ease; pointer-events: none; }
-      .photo-card:hover::after { opacity: 1; }
-      .tilt-left { transform: rotate(-2.4deg); }
-      .tilt-right { transform: rotate(2deg); }
-      .photo-card:hover { transform: rotate(0deg) translateY(-8px); box-shadow: 0 22px 44px rgba(139, 92, 246, 0.28); }
-      .photo-card figcaption { margin-top: 12px; text-align: center; font-family: "Space Mono", monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--secondary); }
+      .coverflow { position: relative; height: 420px; margin-top: 34px; display: flex; align-items: center; justify-content: center; overflow: hidden; perspective: 1500px; }
+      .coverflow-ring { position: relative; width: 360px; height: 280px; transform-style: preserve-3d; animation: coverflow-spin 55s linear infinite; }
+      .cf-slide { position: absolute; inset: 0; padding: 6px; border: 1px solid var(--line); background: #050508; box-shadow: 0 24px 50px rgba(0, 0, 0, 0.55); backface-visibility: hidden; }
+      .cf-slide img { width: 100%; height: 100%; object-fit: cover; display: block; filter: contrast(1.05); }
+      .coverflow::before, .coverflow::after { content: ""; position: absolute; top: 0; bottom: 0; width: 140px; z-index: 2; pointer-events: none; }
+      .coverflow::before { left: 0; background: linear-gradient(90deg, #05050a 10%, transparent 100%); }
+      .coverflow::after { right: 0; background: linear-gradient(270deg, #05050a 10%, transparent 100%); }
+      @keyframes coverflow-spin { from { transform: rotateY(0deg); } to { transform: rotateY(-360deg); } }
       @media (max-width: 900px) {
-        .photo-duo { grid-template-columns: 1fr; }
-        .tilt-left, .tilt-right { transform: rotate(0deg); }
-        .photo-card::after { opacity: 0.55; animation: photo-pulse 3.2s ease-in-out infinite; }
-        .photo-card img { filter: grayscale(0%) contrast(1.06); }
+        .coverflow { height: 300px; }
+        .coverflow-ring { width: 240px; height: 180px; }
       }
-      @keyframes photo-pulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.75; } }
       @media (max-width: 900px) {
         .loop-square {
           grid-template-columns: 1fr;
@@ -167,15 +162,15 @@
         <div class="section-heading compact reveal">
           <div><h2>Faces Behind The Builds</h2><p>Real people, real energy — moments from SDC sessions and showcases.</p></div>
         </div>
-        <div class="photo-duo reveal">
-          <figure class="photo-card tilt-left">
-            <img src="assets/team-1.jpg" alt="SDC CIT members posing together after a session" loading="lazy" />
-            <figcaption>SDC CIT — Team</figcaption>
-          </figure>
-          <figure class="photo-card tilt-right">
-            <img src="assets/team-2.jpg" alt="SDC CIT members group photo in the seminar hall" loading="lazy" />
-            <figcaption>SDC CIT — Team</figcaption>
-          </figure>
+        <div class="coverflow reveal">
+          <div class="coverflow-ring">
+            <figure class="cf-slide" style="transform: rotateY(0deg) translateZ(520px);"><img src="assets/team-1.jpg" alt="SDC CIT members group photo" loading="lazy" /></figure>
+            <figure class="cf-slide" style="transform: rotateY(60deg) translateZ(520px);"><img src="assets/team-2.jpg" alt="SDC CIT members group photo" loading="lazy" /></figure>
+            <figure class="cf-slide" style="transform: rotateY(120deg) translateZ(520px);"><img src="assets/team-1.jpg" alt="SDC CIT members group photo" loading="lazy" /></figure>
+            <figure class="cf-slide" style="transform: rotateY(180deg) translateZ(520px);"><img src="assets/team-2.jpg" alt="SDC CIT members group photo" loading="lazy" /></figure>
+            <figure class="cf-slide" style="transform: rotateY(240deg) translateZ(520px);"><img src="assets/team-1.jpg" alt="SDC CIT members group photo" loading="lazy" /></figure>
+            <figure class="cf-slide" style="transform: rotateY(300deg) translateZ(520px);"><img src="assets/team-2.jpg" alt="SDC CIT members group photo" loading="lazy" /></figure>
+          </div>
         </div>
         <div class="command-panel reveal">
           <div>
