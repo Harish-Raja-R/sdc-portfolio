@@ -12,87 +12,100 @@
   </head>
   <body class="inner-page">
     <nav class="site-nav" aria-label="Primary navigation">
-      <a class="brand" href="index.html" aria-label="Student Developers Cell home"><span class="brand-mark" aria-hidden="true"><img src="assets/logo.png" alt="" /></span><span class="brand-copy"><span>Student Developers Cell</span><small>Coimbatore Institute of Technology</small></span></a>
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"><img src="assets/logo.png" alt="" /></span><span class="brand-copy"><span>Student Developers Cell</span><small>Coimbatore Institute of Technology</small></span></a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </nav>
     <div class="menu-panel" id="menuPanel" aria-hidden="true">
-      <div class="menu-bg"></div><div class="menu-topline"><span>OPEN SOURCE</span><b>/</b><span>INNOVATION</span><b>/</b><span>COLLABORATION</span></div>
+      <div class="menu-bg"></div>
+      <div class="menu-topline"><span>OPEN SOURCE</span><b>/</b><span>INNOVATION</span><b>/</b><span>COLLABORATION</span></div>
       <div class="menu-pagination"><button data-target="index.html">HOME</button><button data-target="about.html">ABOUT</button><button data-target="events.html">EVENTS</button><button data-target="blogs.html">BLOGS</button><button data-target="team.html">TEAM</button><button data-target="contact.html">CONTACT</button></div>
-      <div class="menu-links"><a href="index.html"><span>01</span>HOME</a><a href="about.html"><span>02</span>ABOUT</a><a href="events.html"><span>03</span>EVENTS</a><a href="blogs.html"><span>04</span>BLOGS</a><a href="team.html"><span>05</span>TEAM</a><a href="contact.html"><span>06</span>CONTACT</a></div>
-      <p class="menu-brief">At Student Developers Cell, we believe in building innovation through collaboration, empowering students with modern technology, and creating a strong ecosystem where ideas become shipped products. We encourage hands-on learning, peer mentorship, open contribution, and community-driven projects.</p>
+      <div class="menu-center" id="menuCenter"><span class="menu-center-num" id="menuCenterNum">01</span><span class="menu-center-label" id="menuCenterLabel">HOME</span></div>
+      <p class="menu-brief">At Student Developers Cell, we believe in building innovation through collaboration, empowering students with modern technology, and creating a strong ecosystem where ideas become shipped products.</p>
     </div>
+
     <main class="page-main">
-      <section class="section-shell page-hero blogs-page">
-        <div class="section-log"><span></span>SYSTEM_BLOGS_LOG</div>
+      <section class="section-shell page-hero blogs-minimal">
         <div class="section-heading compact">
-          <div><h1>Blogs</h1><p>Read / Learn / Build</p></div>
-          <p>A collection of technical notes, project breakdowns, workshop recaps, and student stories from the builders inside SDC.</p>
+          <div>
+            <h1>Blogs</h1>
+            <p>Read / Learn / Build</p>
+          </div>
         </div>
 
-        <article class="blog-feature reveal">
-          <div class="blog-feature-visual" aria-hidden="true">
-            <span>Featured Post</span>
-          </div>
-          <div class="blog-feature-copy">
-            <p>Featured Article</p>
+        <p class="blogs-intro reveal">
+          Stories, tutorials, and build logs from students learning in public.
+          Every article is written by someone who just figured something out and wants to help you skip the struggle.
+        </p>
+
+        <div class="blog-feed reveal">
+          <article class="blog-entry blog-featured">
+            <span class="blog-tag">Featured</span>
             <h2>How We Built The New SDC Website</h2>
-            <div class="blog-meta">SDC Web Team / July 2026 / Frontend / Design Systems</div>
+            <p class="blog-meta">SDC Web Team · July 2026 · Frontend · Design Systems</p>
             <p>Behind the redesign: translating a strong reference into a campus-ready site, building reusable sections, improving navigation, and keeping the SDC color language intact.</p>
-            <a href="contact.html">View This Article</a>
-          </div>
-        </article>
+            <a href="contact.html" class="blog-read-link">Read article →</a>
+          </article>
 
-        <div class="blogs-layout">
-          <section class="blog-list reveal" aria-label="Latest blog posts">
-            <article>
-              <div><span class="blog-date">Jul 2026</span><h3>Git And GitHub For First-Time Contributors</h3></div>
-              <p>Everything a beginner needs to open a first pull request, understand branches, and collaborate without fear.</p>
-              <a href="contact.html">View This Article</a>
-            </article>
-            <article>
-              <div><span class="blog-date">Jun 2026</span><h3>Inside A 24-Hour Build Sprint</h3></div>
-              <p>What happens from problem statement to final demo, and how teams can stay focused when the clock is loud.</p>
-              <a href="contact.html">View This Article</a>
-            </article>
-            <article>
-              <div><span class="blog-date">Jun 2026</span><h3>Prompting Is Not Magic, It Is Interface Design</h3></div>
-              <p>A practical note on turning vague AI experiments into repeatable workflows, evaluation loops, and useful tools.</p>
-              <a href="contact.html">View This Article</a>
-            </article>
-            <article>
-              <div><span class="blog-date">May 2026</span><h3>How Open Source Builds A Student Portfolio</h3></div>
-              <p>Why issues, documentation, code review, and merged pull requests tell a stronger story than certificates alone.</p>
-              <a href="contact.html">View This Article</a>
-            </article>
-            <article>
-              <div><span class="blog-date">Apr 2026</span><h3>Designing Club Events Students Actually Finish</h3></div>
-              <p>Lessons from workshops and showcases: smaller scopes, clearer outcomes, tighter mentoring, better demos.</p>
-              <a href="contact.html">View This Article</a>
-            </article>
-          </section>
+          <article class="blog-entry">
+            <span class="blog-tag">Tutorial</span>
+            <h2>Git And GitHub For First-Time Contributors</h2>
+            <p class="blog-meta">Open Source Cell · Jul 2026</p>
+            <p>Everything a beginner needs to open a first pull request, understand branches, and collaborate without fear.</p>
+            <a href="contact.html" class="blog-read-link">Read article →</a>
+          </article>
 
-          <aside class="blog-sidebar reveal" aria-label="Blog sidebar">
-            <section>
-              <h3>Tags</h3>
-              <div class="blog-tags"><span>Frontend</span><span>Open Source</span><span>AI</span><span>Hackathon</span><span>GitHub</span><span>Workshop</span><span>Portfolio</span><span>Design</span></div>
-            </section>
-            <section>
-              <h3>All Authors</h3>
-              <div class="blog-authors"><a href="team.html">SDC Web Team</a><a href="team.html">AI Guild</a><a href="team.html">Event Ops</a><a href="team.html">Open Source Cell</a></div>
-            </section>
-            <section>
-              <h3>About Our Blog</h3>
-              <p>Stories, tutorials, and build logs from students learning in public and shipping work through SDC.</p>
-            </section>
-            <section>
-              <h3>Weekly Updates</h3>
-              <p>Fresh notes from workshops, project squads, event teams, and community mentors.</p>
-            </section>
-            <section>
-              <h3>Join The Discussion</h3>
-              <p>Read, build, ask questions, and bring your own perspective into the community.</p>
-            </section>
-          </aside>
+          <article class="blog-entry">
+            <span class="blog-tag">Story</span>
+            <h2>Inside A 24-Hour Build Sprint</h2>
+            <p class="blog-meta">Event Ops · Jun 2026</p>
+            <p>What happens from problem statement to final demo, and how teams can stay focused when the clock is loud.</p>
+            <a href="contact.html" class="blog-read-link">Read article →</a>
+          </article>
+
+          <article class="blog-entry">
+            <span class="blog-tag">AI</span>
+            <h2>Prompting Is Not Magic, It Is Interface Design</h2>
+            <p class="blog-meta">AI Guild · Jun 2026</p>
+            <p>A practical note on turning vague AI experiments into repeatable workflows, evaluation loops, and useful tools.</p>
+            <a href="contact.html" class="blog-read-link">Read article →</a>
+          </article>
+
+          <article class="blog-entry">
+            <span class="blog-tag">Career</span>
+            <h2>How Open Source Builds A Student Portfolio</h2>
+            <p class="blog-meta">Open Source Cell · May 2026</p>
+            <p>Why issues, documentation, code review, and merged pull requests tell a stronger story than certificates alone.</p>
+            <a href="contact.html" class="blog-read-link">Read article →</a>
+          </article>
+
+          <article class="blog-entry">
+            <span class="blog-tag">Workshop</span>
+            <h2>Designing Club Events Students Actually Finish</h2>
+            <p class="blog-meta">Event Ops · Apr 2026</p>
+            <p>Lessons from workshops and showcases: smaller scopes, clearer outcomes, tighter mentoring, better demos.</p>
+            <a href="contact.html" class="blog-read-link">Read article →</a>
+          </article>
+
+          <article class="blog-entry">
+            <span class="blog-tag">Dev</span>
+            <h2>Deploying Your First Full-Stack App</h2>
+            <p class="blog-meta">SDC Web Team · Mar 2026</p>
+            <p>From localhost to production: choosing a host, handling environment variables, setting up CI, and debugging the first deployment failure.</p>
+            <a href="contact.html" class="blog-read-link">Read article →</a>
+          </article>
+
+          <article class="blog-entry">
+            <span class="blog-tag">Culture</span>
+            <h2>Why We Code Review Everything</h2>
+            <p class="blog-meta">SDC Web Team · Feb 2026</p>
+            <p>Code review isn't about catching bugs. It's about making everyone on the team better at reading, writing, and thinking about code.</p>
+            <a href="contact.html" class="blog-read-link">Read article →</a>
+          </article>
+        </div>
+
+        <div class="blogs-cta reveal">
+          <p>Want to write for SDC? We're always looking for students who want to share what they've learned.</p>
+          <a href="contact.html">Get in touch →</a>
         </div>
       </section>
     </main>
