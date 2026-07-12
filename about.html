@@ -8,6 +8,97 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@600;700;900&family=Space+Mono&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      .loop-square {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-areas:
+          "step1 arrow-top step2"
+          "arrow-left hub arrow-right"
+          "step4 arrow-bottom step3";
+        align-items: center;
+        justify-items: center;
+        gap: 10px;
+        margin-top: 26px;
+      }
+      .loop-step { width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; padding: 30px 22px; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(139, 92, 246, 0.1), rgba(15, 16, 24, 0.92)); transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, opacity 620ms ease; }
+      .loop-step:hover { transform: translateY(-4px); border-color: rgba(139, 92, 246, 0.65); box-shadow: 0 0 30px rgba(139, 92, 246, 0.16); }
+      .loop-icon { width: 62px; height: 62px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--purple); background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(59, 130, 246, 0.2)); color: var(--white); font-family: Orbitron, monospace; font-weight: 700; font-size: 1.05rem; box-shadow: 0 0 20px rgba(139, 92, 246, 0.25); }
+      .step2 .loop-icon { border-color: var(--blue); background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(139, 92, 246, 0.2)); box-shadow: 0 0 20px rgba(59, 130, 246, 0.25); }
+      .step3 .loop-icon { border-color: var(--pink); background: linear-gradient(135deg, rgba(236, 72, 153, 0.4), rgba(59, 130, 246, 0.18)); box-shadow: 0 0 20px rgba(236, 72, 153, 0.25); }
+      .step4 .loop-icon { border-color: var(--purple); background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(139, 92, 246, 0.32)); box-shadow: 0 0 20px rgba(139, 92, 246, 0.28); }
+      .loop-step h4 { margin: 2px 0 0; color: var(--white); font-family: Orbitron, monospace; text-transform: uppercase; letter-spacing: 0.04em; font-size: 1.05rem; }
+      .loop-step p { margin: 0; color: var(--secondary); font-size: 0.86rem; line-height: 1.65; }
+      .step1 { grid-area: step1; }
+      .step2 { grid-area: step2; }
+      .step3 { grid-area: step3; }
+      .step4 { grid-area: step4; }
+      .pos-top { grid-area: arrow-top; }
+      .pos-right { grid-area: arrow-right; }
+      .pos-bottom { grid-area: arrow-bottom; }
+      .pos-left { grid-area: arrow-left; }
+      .loop-hub { grid-area: hub; position: relative; width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-family: Orbitron, monospace; font-weight: 900; font-size: 1.3rem; background: radial-gradient(circle, rgba(139, 92, 246, 0.4), rgba(15, 16, 24, 0.92)); border: 1px solid var(--purple); box-shadow: 0 0 24px rgba(139, 92, 246, 0.35); }
+      .loop-hub::before { content: ""; position: absolute; inset: -7px; border-radius: 50%; border: 1px dashed rgba(139, 92, 246, 0.45); animation: loop-spin 7s linear infinite; }
+      @keyframes loop-spin { to { transform: rotate(360deg); } }
+      @keyframes loop-flow { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+      .loop-chevron {
+        display: inline-block;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 900;
+        font-size: 1.15rem;
+        letter-spacing: -7px;
+        line-height: 1;
+        padding: 0 4px;
+        background: linear-gradient(90deg, var(--purple), var(--blue), var(--pink));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.55)) drop-shadow(0 0 9px rgba(236, 72, 153, 0.28));
+        animation: loop-flow 2.4s ease-in-out infinite;
+      }
+      .pos-top .loop-chevron { transform: rotate(0deg); animation-delay: 0s; }
+      .pos-right .loop-chevron { transform: rotate(90deg); animation-delay: 0.6s; }
+      .pos-bottom .loop-chevron { transform: rotate(180deg); animation-delay: 1.2s; }
+      .pos-left .loop-chevron { transform: rotate(-90deg); animation-delay: 1.8s; }
+      .loop-square .loop-step:nth-of-type(1) { transition-delay: 0ms; }
+      .loop-square .loop-step:nth-of-type(2) { transition-delay: 120ms; }
+      .loop-square .loop-step:nth-of-type(3) { transition-delay: 240ms; }
+      .loop-square .loop-step:nth-of-type(4) { transition-delay: 360ms; }
+      .loop-return { display: none; align-items: center; justify-content: center; gap: 10px; margin-top: 22px; padding-top: 18px; border-top: 1px dashed var(--line); color: var(--pink); font-family: "Space Mono", monospace; font-size: 0.76rem; letter-spacing: 0.15em; text-transform: uppercase; }
+      .coverflow { position: relative; height: 420px; margin-top: 34px; display: flex; align-items: center; justify-content: center; overflow: hidden; perspective: 1500px; }
+      .coverflow-ring { position: relative; width: 360px; height: 280px; transform-style: preserve-3d; animation: coverflow-spin 55s linear infinite; }
+      .cf-slide { position: absolute; inset: 0; padding: 6px; border: 1px solid var(--line); background: #050508; box-shadow: 0 24px 50px rgba(0, 0, 0, 0.55); backface-visibility: hidden; }
+      .cf-slide img { width: 100%; height: 100%; object-fit: cover; display: block; filter: contrast(1.05); }
+      .coverflow::before, .coverflow::after { content: ""; position: absolute; top: 0; bottom: 0; width: 140px; z-index: 2; pointer-events: none; }
+      .coverflow::before { left: 0; background: linear-gradient(90deg, #05050a 10%, transparent 100%); }
+      .coverflow::after { right: 0; background: linear-gradient(270deg, #05050a 10%, transparent 100%); }
+      @keyframes coverflow-spin { from { transform: rotateY(0deg); } to { transform: rotateY(-360deg); } }
+      @media (max-width: 900px) {
+        .coverflow { height: 300px; }
+        .coverflow-ring { width: 240px; height: 180px; }
+      }
+      @media (max-width: 900px) {
+        .loop-square {
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "step1"
+            "arrow-top"
+            "step2"
+            "arrow-right"
+            "hub"
+            "step3"
+            "arrow-bottom"
+            "step4"
+            "arrow-left";
+        }
+        .pos-top .loop-chevron,
+        .pos-right .loop-chevron,
+        .pos-bottom .loop-chevron { transform: rotate(90deg); }
+        .loop-return { display: flex; }
+        .loop-step { box-shadow: 0 0 24px rgba(139, 92, 246, 0.14); }
+      }
+    </style>
   </head>
   <body class="inner-page">
     <nav class="site-nav" aria-label="Primary navigation">
@@ -15,10 +106,10 @@
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </nav>
     <div class="menu-panel" id="menuPanel" aria-hidden="true">
-      <div class="menu-bg"></div><div class="menu-topline"><span>DEVELOPMENT</span><b>/</b><span>INNOVATION</span><b>/</b><span>EXECUTION</span></div>
-      <div class="menu-pagination"><button data-target="index.html">HOME</button><button data-target="about.html">ABOUT</button><button data-target="events.html">EVENTS</button><button data-target="modules.html">MODULES</button><button data-target="team.html">TEAM</button><button data-target="contact.html">CONTACT</button></div>
-      <div class="menu-links"><a href="index.html"><span>01</span>HOME</a><a href="about.html"><span>02</span>ABOUT</a><a href="events.html"><span>03</span>EVENTS</a><a href="modules.html"><span>04</span>MODULES</a><a href="team.html"><span>05</span>TEAM</a><a href="contact.html"><span>06</span>CONTACT</a></div>
-      <p class="menu-brief">Student-led, builder-first, and product-minded. Shipping projects, workshops, hackathons, and peer learning from CIT.</p>
+      <div class="menu-bg"></div><div class="menu-topline"><span>OPEN SOURCE</span><b>/</b><span>INNOVATION</span><b>/</b><span>COLLABORATION</span></div>
+      <div class="menu-pagination"><button data-target="index.html">HOME</button><button data-target="about.html">ABOUT</button><button data-target="events.html">EVENTS</button><button data-target="blogs.html">BLOGS</button><button data-target="team.html">TEAM</button><button data-target="contact.html">CONTACT</button></div>
+      <div class="menu-links"><a href="index.html"><span>01</span>HOME</a><a href="about.html"><span>02</span>ABOUT</a><a href="events.html"><span>03</span>EVENTS</a><a href="blogs.html"><span>04</span>BLOGS</a><a href="team.html"><span>05</span>TEAM</a><a href="contact.html"><span>06</span>CONTACT</a></div>
+      <p class="menu-brief">At Student Developers Cell, we believe in building innovation through collaboration, empowering students with modern technology, and creating a strong ecosystem where ideas become shipped products. We encourage hands-on learning, peer mentorship, open contribution, and community-driven projects.</p>
     </div>
     <main class="page-main">
       <section class="section-shell page-hero">
@@ -38,12 +129,55 @@
             <span>OPERATING LOOP</span>
             <h2>Learn. Build. Review. Showcase.</h2>
           </div>
-          <div class="process-list">
-            <article><strong>01</strong><p>Run focused learning sessions around tools students actually use.</p></article>
-            <article><strong>02</strong><p>Turn every session into a build task, prototype, repository, or demo.</p></article>
-            <article><strong>03</strong><p>Review work through mentors, peers, and alumni feedback loops.</p></article>
-            <article><strong>04</strong><p>Showcase the best work through events, portfolios, and campus demos.</p></article>
+          <div class="loop-square">
+            <article class="loop-step reveal step1">
+              <span class="loop-icon">01</span>
+              <h4>Learn</h4>
+              <p>Run focused learning sessions around tools students actually use.</p>
+            </article>
+            <span class="pos-top"><span class="loop-chevron">❯❯❯</span></span>
+            <article class="loop-step reveal step2">
+              <span class="loop-icon">02</span>
+              <h4>Build</h4>
+              <p>Turn every session into a build task, prototype, repository, or demo.</p>
+            </article>
+            <span class="pos-right"><span class="loop-chevron">❯❯❯</span></span>
+            <span class="loop-hub">∞</span>
+            <article class="loop-step reveal step3">
+              <span class="loop-icon">03</span>
+              <h4>Review</h4>
+              <p>Review work through mentors, peers, and alumni feedback loops.</p>
+            </article>
+            <span class="pos-bottom"><span class="loop-chevron">❯❯❯</span></span>
+            <article class="loop-step reveal step4">
+              <span class="loop-icon">04</span>
+              <h4>Showcase</h4>
+              <p>Showcase the best work through events, portfolios, and campus demos.</p>
+            </article>
+            <span class="pos-left"><span class="loop-chevron">❯❯❯</span></span>
           </div>
+          <div class="loop-return">↺ Cycle repeats — step 04 feeds back into step 01</div>
+        </div>
+        <div class="section-log reveal"><span></span>TEAM_GALLERY_LOG</div>
+        <div class="section-heading compact reveal">
+          <div><h2>Faces Behind The Builds</h2><p>Real people, real energy — moments from SDC sessions and showcases.</p></div>
+        </div>
+        <div class="coverflow reveal">
+          <div class="coverflow-ring">
+            <figure class="cf-slide" style="transform: rotateY(0deg) translateZ(520px);"><img src="assets/team-1.jpg" alt="SDC CIT members group photo" loading="lazy" /></figure>
+            <figure class="cf-slide" style="transform: rotateY(60deg) translateZ(520px);"><img src="assets/team-2.jpg" alt="SDC CIT members group photo" loading="lazy" /></figure>
+            <figure class="cf-slide" style="transform: rotateY(120deg) translateZ(520px);"><img src="assets/team-1.jpg" alt="SDC CIT members group photo" loading="lazy" /></figure>
+            <figure class="cf-slide" style="transform: rotateY(180deg) translateZ(520px);"><img src="assets/team-2.jpg" alt="SDC CIT members group photo" loading="lazy" /></figure>
+            <figure class="cf-slide" style="transform: rotateY(240deg) translateZ(520px);"><img src="assets/team-1.jpg" alt="SDC CIT members group photo" loading="lazy" /></figure>
+            <figure class="cf-slide" style="transform: rotateY(300deg) translateZ(520px);"><img src="assets/team-2.jpg" alt="SDC CIT members group photo" loading="lazy" /></figure>
+          </div>
+        </div>
+        <div class="command-panel reveal">
+          <div>
+            <span>AWARD · 2025-26</span>
+            <h3>Best Performing Club</h3>
+          </div>
+          <p>Recognized under the Technical and Management Knowledge category — a win built by every participant, organizer, and advisor behind SDC CIT.</p>
         </div>
       </section>
     </main>
