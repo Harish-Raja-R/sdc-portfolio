@@ -48,7 +48,7 @@ a {
   justify-content: space-between;
   padding: 0 32px;
   color: var(--white);
-  mix-blend-mode: difference;
+  /* mix-blend-mode:saturation; */
 }
 
 .brand {
@@ -63,8 +63,8 @@ a {
   display: grid;
   place-items: center;
   overflow: hidden;
-  border: 1px solid rgba(229, 231, 235, 0.22);
-  background: rgba(255, 255, 255, 0.96);
+  /* border: 1px solid rgba(229, 231, 235, 0.22);
+  background: rgba(255, 255, 255, 0.96); */
 }
 
 .brand-mark img {
