@@ -753,6 +753,54 @@ const SDC_TEAM = [
         "href": "https://www.instagram.com/_.keerthh.__?igsh=ejI4aWQyMWk3M2xx"
       }
     ]
+  },
+  {
+    "id": "SDC-25-26-030",
+    "slug": "dr-d-k-kavitha",
+    "name": "Dr D.K. Kavitha",
+    "role": "Staff Advisor",
+    "program": "CIT Faculty",
+    "division": "Staff Advisors",
+    "avatar": "https://lh3.googleusercontent.com/d/1ANBuN1TqFKojC5ofZhutTpXsXrlO569z=w1000",
+    "noIdCard": true,
+    "socials": [
+      {
+        "label": "View Profile",
+        "href": "https://cit.edu.in/faculty/dr-d-kavitha"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-031",
+    "slug": "dr-r-sudha-muthusamy",
+    "name": "Dr R. Sudha Muthusamy",
+    "role": "Staff Advisor",
+    "program": "CIT Faculty",
+    "division": "Staff Advisors",
+    "avatar": "https://lh3.googleusercontent.com/d/1E5ODHmwA7xNL3lp3u79jWj2qeFIMpjrk=w1000",
+    "noIdCard": true,
+    "socials": [
+      {
+        "label": "View Profile",
+        "href": "https://cit.edu.in/faculty/dr-r-sudha-muthusamy-430"
+      }
+    ]
+  },
+  {
+    "id": "SDC-25-26-032",
+    "slug": "dr-k-e-hemapriya",
+    "name": "Dr K. E. Hemapriya",
+    "role": "Staff Advisor",
+    "program": "CIT Faculty",
+    "division": "Staff Advisors",
+    "avatar": "https://lh3.googleusercontent.com/d/1zGWRWjZ8yoIU5kvJcN8n0GYcZs7uG8C8=w1000",
+    "noIdCard": true,
+    "socials": [
+      {
+        "label": "View Profile",
+        "href": "https://cit.edu.in/faculty/dr-k-e-hemapriya"
+      }
+    ]
   }
 ];
 
@@ -793,13 +841,31 @@ const SDC_TEAM = [
   document.getElementById("profileRole").textContent = member.role;
   document.getElementById("profileProgram").textContent = member.program;
 
+  // Staff advisors (member.noIdCard === true) get no member-ID badge and
+  // no dummy ID card / QR mockup — those elements are stripped from the
+  // DOM entirely for them, not just visually hidden.
+  const profileIdChip = document.getElementById("profileIdChip");
+  if (profileIdChip) {
+    if (member.noIdCard) {
+      profileIdChip.remove();
+    } else {
+      profileIdChip.hidden = false;
+    }
+  }
+
   const idCardMock = document.getElementById("idCardMock");
-  document.getElementById("idCardPhoto").src = member.avatar || "";
-  document.getElementById("idCardPhoto").alt = member.name;
-  document.getElementById("idCardName").textContent = member.name;
-  document.getElementById("idCardRole").textContent = member.role;
-  document.getElementById("idCardId").textContent = member.id;
-  if (idCardMock) idCardMock.hidden = false;
+  if (idCardMock) {
+    if (member.noIdCard) {
+      idCardMock.remove();
+    } else {
+      document.getElementById("idCardPhoto").src = member.avatar || "";
+      document.getElementById("idCardPhoto").alt = member.name;
+      document.getElementById("idCardName").textContent = member.name;
+      document.getElementById("idCardRole").textContent = member.role;
+      document.getElementById("idCardId").textContent = member.id;
+      idCardMock.hidden = false;
+    }
+  }
 
   const socialsWrap = document.getElementById("profileSocials");
   (member.socials || []).forEach((social) => {
